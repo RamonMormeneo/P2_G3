@@ -10,7 +10,6 @@ struct Key
 void main()
 {
 	std::unordered_map<std::pair<std::string,std::string>, std::string, Key> fusions;
-	std::vector<std::string> Linea_Separada;
 	std::ifstream ftoread("elements.dat");
 	std::string Linea;
 	while (std::getline(ftoread, Linea))
@@ -22,5 +21,6 @@ void main()
 		std::size_t posdelmas = Linea.find("+");
 		key.key1 = Linea.substr(0, posdelmas - 1);
 		key.key2 = Linea.substr(posdelmas + 2);
+
 	}
 }
