@@ -22,12 +22,14 @@ void main()
 	std::vector <std::string> basics({ "Agua","Fuego","Tierra","Aire" });
 	std::ifstream ftoread("elements.dat");
 	std::string Linea;
-	std:: string toRead;
+	std::string toRead;
+	std::string separaciones[3];
 	bool actions = true;
 	int item;
+
 	while (std::getline(ftoread, Linea))
 	{
-		std::pair <std::string,std::string> key;
+		std::pair <std::string, std::string> key;
 		std::size_t posdeligual = Linea.find("=");
 		std::string result = Linea.substr(0, posdeligual - 1);
 		Linea = Linea.substr(posdeligual + 2);
@@ -36,46 +38,42 @@ void main()
 		key.second = Linea.substr(posdelmas + 2);
 		fusions[key] = result;
 	}
-	std:: cin >> toRead;
-	if (toRead == "add")
-	{
-		int aux;
-		std:: cin >> aux;
-		items.push_back(items[aux - 1]);
-	}
-	else if (toRead == "add basics")
-	{
-		int aux = 4;
-		for (int i = 0; i < aux; i++)
+	/*
+		std::cin >> toRead;
+		if (toRead == "add")
 		{
-			items.push_back(basics[i]);
+			int aux;
+			std::cin >> aux;
+			items.push_back(items[aux - 1]);
 		}
-	}
-	else if (toRead == "delete")
-	{
-		int aux;
-		std:: cin >> aux;
-		items.erase(items.begin() + (aux - 1));
-	}
-	else if (toRead == "clear")
-	{
+		else if (toRead == "add basics")
+		{
+			int aux = 4;
+			for (int i = 0; i < aux; i++)
+			{
+				items.push_back(basics[i]);
+			}
+		}
+		else if (toRead == "delete")
+		{
+			int aux;
+			std::cin >> aux;
+			items.erase(items.begin() + (aux - 1));
+		}
+		else if (toRead == "clear")
+		{
 
-	}
-	else if (toRead == "sort")
-	{
-		std::sort(items.begin(), items.end());
-	}
-	else if (toRead == "info")
-	{
+		}
+		else if (toRead == "sort")
+		{
+			std::sort(items.begin(), items.end());
+		}
+		else if (toRead == "info")
+		{
 
-	}
-	else if (toRead == "help")
-	{
-		actions = true;
-	}
-	else
-	{
-		const int i = toRead.size;
-		char toReadarr[i];
-	}
+		}
+		else if (toRead == "help")
+		{
+			actions = true;
+		}*/
 }
