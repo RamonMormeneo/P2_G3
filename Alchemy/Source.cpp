@@ -38,8 +38,10 @@ void main()
 		key.second = Linea.substr(posdelmas + 2);
 		fusions[key] = result;
 	}
+
 	/*
 		std::cin >> toRead;
+		int x = atoi(toRead.c_str());
 		if (toRead == "add")
 		{
 			int aux;
@@ -75,5 +77,16 @@ void main()
 		else if (toRead == "help")
 		{
 			actions = true;
+
+		}
+		else if (x == 0 && toRead != "0")
+		{
+			std::cout << "funciona";
+		}
+		else
+		{
+
 		}*/
+
+
 }
