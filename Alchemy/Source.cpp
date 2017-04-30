@@ -39,7 +39,6 @@ void main()
 		fusions[key] = result;
 	}
 
-	
 		std::cin >> toRead;
 		int x = atoi(toRead.c_str());
 		if (toRead == "add")
@@ -81,6 +80,7 @@ void main()
 		}
 		else if (x == 0 && toRead != "0")
 		{
+			std::cout << "funciona";
 		}
 		else
 		{
