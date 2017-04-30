@@ -67,14 +67,17 @@ void main()
 		{
 			int aux;
 			std::cin >> aux;
-			items.erase(items.begin() + (aux - 1));
+			if (aux < items.size())
+			{
+				items.erase(items.begin() + (aux - 1));
+			}
 		}
 		else if (toRead == "clean")
 		{
 			std::set <std::string> repes;
 
-			for (int i = 0; i < items.size(); ++i){
-				repes.insert(items[i]);
+			for (auto i = items.begin(); i != items.end(); ++i){
+				repes.insert(*i);
 			}
 
 			items.clear();
@@ -112,9 +115,9 @@ void main()
 			std::cout << "- Enter the word 'clean' to delete all the instances of repeated elements." << std::endl;
 			std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
 		}
-		else if (x != 0 || toRead == "0")
+		else if ((x != 0 || toRead == "0")&& x<items.size())
 		{
-			std::cout << "funciona";
+			std::pair<std::string, std::string> key;
 		}
 
 
