@@ -20,8 +20,8 @@ struct std::hash<std::pair<std::string, std::string>>
 void main()
 {
 	std::unordered_map<std::pair<std::string, std::string>, std::string> fusions;
-	std::vector <std::string> items({ "Agua","Fuego","Tierra","Aire" });
-	std::vector <std::string> basics({ "Agua","Fuego","Tierra","Aire" });
+	std::vector <std::string> items({ "Water","Fire","Earth","Wind" });
+	std::vector <std::string> basics({ "Water","Fire","Earth","Wind" });
 	std::ifstream ftoread("elements.dat");
 	std::string Linea;
 	std::string toRead;
@@ -68,7 +68,7 @@ void main()
 		{
 			std::set <std::string> repes;
 
-			for (int i = 0; i <= items.size(); ++i){
+			for (int i = 0; i < items.size(); ++i){
 				repes.insert(items[i]);
 			}
 
