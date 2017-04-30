@@ -50,7 +50,10 @@ void main()
 		{
 			int aux;
 			std::cin >> aux;
-			items.push_back(items[aux - 1]);
+			if (aux < items.size())
+			{
+				items.push_back(items[aux - 1]);
+			}
 		}
 		else if (toRead == "add basics")
 		{
@@ -100,8 +103,6 @@ void main()
 		}
 		else if (toRead == "help")
 		{
-			actions = true;
-
 			std::cout << "- Enter two numbers of your elements list to combine them." << std::endl;
 			std::cout << "- Enter the word 'add' and the number of an element to add a new instance of that element." << std::endl;
 			std::cout << "- Enter 'add basics' to add new instances of the 4 basic elements." << std::endl;
