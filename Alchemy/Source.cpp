@@ -26,15 +26,16 @@ void main()
 	std::string separaciones[3];
 	bool actions = true;
 	int item;
+	int inicio = 0;
 
 	while (std::getline(ftoread, Linea))
 	{
 		std::pair <std::string, std::string> key;
 		std::size_t posdeligual = Linea.find("=");
-		std::string result = Linea.substr(0, posdeligual - 1);
+		std::string result = Linea.substr(inicio, posdeligual - 1);
 		Linea = Linea.substr(posdeligual + 2);
 		std::size_t posdelmas = Linea.find("+");
-		key.first = Linea.substr(0, posdelmas - 1);
+		key.first = Linea.substr(inicio, posdelmas - 1);
 		key.second = Linea.substr(posdelmas + 2);
 		fusions[key] = result;
 	}
@@ -63,6 +64,9 @@ void main()
 		}
 		else if (toRead == "clear")
 		{
+
+
+
 
 		}
 		else if (toRead == "sort")
