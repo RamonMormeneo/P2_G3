@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <set>
+#include <windows.h>
 
 template<>
 struct std::hash<std::pair<std::string, std::string>>
@@ -29,6 +30,7 @@ void main()
 	bool actions = true;
 	int item;
 	int inicio = 0;
+	std::string wiki = "https://en.wikipedia.org/wiki/";
 
 	while (std::getline(ftoread, Linea))
 	{
@@ -85,11 +87,29 @@ void main()
 		else if (toRead == "info")
 		{
 
+			int aux;
+			std::cin >> aux;
+
+			std::string url;
+
+			url.operator+= (wiki);
+			url.operator+= (items[aux - 1]);
+
+			ShellExecuteA(nullptr, "open", url.c_str() , nullptr, nullptr, SW_SHOWNORMAL);
+
 		}
 		else if (toRead == "help")
 		{
 			actions = true;
 
+			std::cout << "- Enter two numbers of your elements list to combine them." << std::endl;
+			std::cout << "- Enter the word 'add' and the number of an element to add a new instance of that element." << std::endl;
+			std::cout << "- Enter 'add basics' to add new instances of the 4 basic elements." << std::endl;
+			std::cout << "- Enter the word 'delete' and the number of an element to erase it from your list." << std::endl;
+			std::cout << "- Enter the word 'info' and the number of an element to get information about it in the explorer." << std::endl;
+			std::cout << "- Enter the word 'sort' to sort by alphabetical order the elements in the list." << std::endl;
+			std::cout << "- Enter the word 'clean' to delete all the instances of repeated elements." << std::endl;
+			std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
 		}
 		else if (x != 0 || toRead == "0")
 		{
