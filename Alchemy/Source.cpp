@@ -5,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
+#include <set>
+
 template<>
 struct std::hash<std::pair<std::string, std::string>>
 {
@@ -62,12 +64,19 @@ void main()
 			std::cin >> aux;
 			items.erase(items.begin() + (aux - 1));
 		}
-		else if (toRead == "clear")
+		else if (toRead == "clean")
 		{
+			std::set <std::string> repes;
 
+			for (int i = 0; i <= items.size(); ++i){
+				repes.insert(items[i]);
+			}
 
+			items.clear();
 
-
+			for (auto i = repes.begin(); i != repes.end(); ++i){
+				items.push_back(*i);
+			}
 		}
 		else if (toRead == "sort")
 		{
