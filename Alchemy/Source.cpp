@@ -125,13 +125,13 @@ void main()
 			std::pair<std::string, std::string> key;
 			key.first = items[x - 1];
 			system("cls");
-			std::cout << "Otro elemento" << std::endl;
+			std::cout << "Choose another element" << std::endl;
 			int aux;
 			std::cin >> aux;
 			if (aux == x)
 			{
 				system("cls");
-				std::cout << "Este ya lo has elegido, otro elemento" << std::endl;
+				std::cout << "This element has been chosen. Choose another one" << std::endl;
 				std::cin >> aux;
 			}
 			key.second = items[aux - 1];
