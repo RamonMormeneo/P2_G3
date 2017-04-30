@@ -20,13 +20,16 @@ struct std::hash<std::pair<std::string, std::string>>
 };
 void main()
 {
+	std::unordered_map<std::pair<std::string, std::string>, bool> newitems;
 	std::unordered_map<std::pair<std::string, std::string>, std::string> fusions;
-	std::vector <std::string> items({ "Water","Fire","Earth","Wind" });
+	std::vector <std::string> items({ "Water","Fire","Earth","Wind","Water" });
 	std::vector <std::string> basics({ "Water","Fire","Earth","Wind" });
 	std::ifstream ftoread("elements.dat");
 	std::string Linea;
 	std::string toRead;
 	std::string separaciones[3];
+	bool tryagain = false;
+	int puntuacion=0;
 	bool actions = true;
 	int item;
 	int inicio = 0;
@@ -42,8 +45,10 @@ void main()
 		key.first = Linea.substr(inicio, posdelmas - 1);
 		key.second = Linea.substr(posdelmas + 2);
 		fusions[key] = result;
+		newitems[key] = true;
 	}
-
+	while (puntuacion < 395)
+	{
 		std::cin >> toRead;
 		int x = atoi(toRead.c_str());
 		if (toRead == "add")
@@ -76,13 +81,13 @@ void main()
 		{
 			std::set <std::string> repes;
 
-			for (auto i = items.begin(); i != items.end(); ++i){
+			for (auto i = items.begin(); i != items.end(); ++i) {
 				repes.insert(*i);
 			}
 
 			items.clear();
 
-			for (auto i = repes.begin(); i != repes.end(); ++i){
+			for (auto i = repes.begin(); i != repes.end(); ++i) {
 				items.push_back(*i);
 			}
 		}
@@ -101,7 +106,7 @@ void main()
 			url.operator+= (wiki);
 			url.operator+= (items[aux - 1]);
 
-			ShellExecuteA(nullptr, "open", url.c_str() , nullptr, nullptr, SW_SHOWNORMAL);
+			ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 
 		}
 		else if (toRead == "help")
@@ -115,10 +120,56 @@ void main()
 			std::cout << "- Enter the word 'clean' to delete all the instances of repeated elements." << std::endl;
 			std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
 		}
-		else if ((x != 0 || toRead == "0")&& x<items.size())
+		else if ((x != 0 || toRead == "0") && x < items.size())
 		{
 			std::pair<std::string, std::string> key;
+			key.first = items[x - 1];
+			system("cls");
+			std::cout << "Otro elemento" << std::endl;
+			int aux;
+			std::cin >> aux;
+			if (aux == x)
+			{
+				system("cls");
+				std::cout << "Este ya lo has elegido, otro elemento" << std::endl;
+				std::cin >> aux;
+			}
+			key.second = items[aux - 1];
+			auto it = newitems[key];
+			if (newitems.size() > 390)
+			{
+				auto erase = newitems.find(key);
+				newitems.erase(erase);
+				key.first = items[aux - 1];
+				key.second = items[x - 1];
+				it = newitems[key];
+			}
+			if (newitems.size() > 390)
+			{
+				auto erase = newitems.find(key);
+				newitems.erase(erase);
+				std::cout << "Try Again";
+				tryagain = true;
+			}
+			if (tryagain == false)
+			{
+				if (it == true)
+				{
+					newitems[key] = false;
+					puntuacion++;
+					items.erase(items.begin() + (x - 1));
+					items.erase(items.begin() + (aux - 1));
+					items.push_back(fusions[key]);
+				}
+				if (it == false)
+				{
+					items.erase(items.begin() + (x - 1));
+					items.erase(items.begin() + (aux - 1));
+					items.push_back(fusions[key]);
+				}
+			}
+			tryagain = false;
 		}
-
-
+		system("cls");
+	}
 }
