@@ -91,13 +91,9 @@ void main()
 			actions = true;
 
 		}
-		else if (x == 0 && toRead != "0")
+		else if (x != 0 || toRead == "0")
 		{
 			std::cout << "funciona";
-		}
-		else
-		{
-
 		}
 
 
