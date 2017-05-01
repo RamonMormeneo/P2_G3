@@ -23,8 +23,8 @@ void main()
 {
 	std::unordered_map<std::pair<std::string, std::string>, bool> newitems;
 	std::unordered_map<std::pair<std::string, std::string>, std::string> fusions;
-	std::vector <std::string> items({ "Water","Fire","Earth","Wind","Water" });
-	std::vector <std::string> basics({ "Water","Fire","Earth","Wind" });
+	std::vector <std::string> items({ "Water","Fire","Earth","Air" });
+	std::vector <std::string> basics({ "Water","Fire","Earth","Air" });
 	std::ifstream ftoread("elements.dat");
 	std::string Linea;
 	std::string toRead;
@@ -68,6 +68,14 @@ void main()
 			
 			ayuda = false;
 		}
+
+		std::cout << std::endl;
+		std::cout << "Puntuacion:" << ' ' << puntuacion << std::endl;
+		
+		for (int i = 1; i <= items.size(); i++){
+			std::cout << i << "-" << ' ' << items[i-1] << std::endl;
+		}
+
 
 		std::cin >> toRead;
 		int x = atoi(toRead.c_str());
