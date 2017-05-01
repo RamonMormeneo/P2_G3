@@ -120,7 +120,7 @@ void main()
 			std::cout << "- Enter the word 'clean' to delete all the instances of repeated elements." << std::endl;
 			std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
 		}
-		else if ((x != 0 || toRead == "0") && x < items.size())
+		else if (x != 0 && x <= items.size())
 		{
 			std::pair<std::string, std::string> key;
 			key.first = items[x - 1];
