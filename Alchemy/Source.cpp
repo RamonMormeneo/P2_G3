@@ -81,20 +81,22 @@ void main()
 		int x = atoi(toRead.c_str());
 		if (toRead == "add")
 		{
-			int aux;
+			std::string aux;
 			std::cin >> aux;
-			if (aux < items.size())
+			int aux2 = atoi(aux.c_str());
+			if (aux=="basics")
 			{
-				items.push_back(items[aux - 1]);
+				int aux = 4;
+				for (int i = 0; i < aux; i++)
+				{
+					items.push_back(basics[i]);
+				}
 			}
-		}
-		else if (toRead == "add basics")
-		{
-			int aux = 4;
-			for (int i = 0; i < aux; i++)
+			else if (aux2!=0 && aux2<= items.size())
 			{
-				items.push_back(basics[i]);
+				items.push_back(items[aux2 - 1]);
 			}
+
 		}
 		else if (toRead == "delete")
 		{
@@ -174,18 +176,24 @@ void main()
 			}
 			if (tryagain == false)
 			{
+				if (aux < x)
+				{
+					int aux2 = x;
+					x = aux;
+					aux = aux2;
+				}
 				if (it == true)
 				{
 					newitems[key] = false;
 					puntuacion++;
 					items.erase(items.begin() + (x - 1));
-					items.erase(items.begin() + (aux - 1));
+					items.erase(items.begin() + (aux-2));
 					items.push_back(fusions[key]);
 				}
 				if (it == false)
 				{
 					items.erase(items.begin() + (x - 1));
-					items.erase(items.begin() + (aux - 1));
+					items.erase(items.begin() + (aux-2));
 					items.push_back(fusions[key]);
 				}
 			}
