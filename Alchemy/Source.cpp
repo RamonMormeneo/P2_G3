@@ -18,6 +18,7 @@ struct std::hash<std::pair<std::string, std::string>>
 			^ (std::hash <std::string> ()(c.second) << 1)) >> 1);
 	}
 };
+
 void main()
 {
 	std::unordered_map<std::pair<std::string, std::string>, bool> newitems;
@@ -28,6 +29,7 @@ void main()
 	std::string Linea;
 	std::string toRead;
 	std::string separaciones[3];
+	bool ayuda = true;
 	bool tryagain = false;
 	int puntuacion=0;
 	bool actions = true;
@@ -49,6 +51,24 @@ void main()
 	}
 	while (puntuacion < 395)
 	{
+		if (ayuda == true){
+
+			std::cout << "--------------------------------------------------------------" << std::endl;
+			std::cout << "                       FULLENTI ALCHEMY                       " << std::endl;
+			std::cout << "--------------------------------------------------------------" << std::endl;
+			std::cout << std::endl;
+			std::cout << "- Enter two numbers of your elements list to combine them." << std::endl;
+			std::cout << "- Enter the word 'add' and the number of an element to add a new instance of that element." << std::endl;
+			std::cout << "- Enter 'add basics' to add new instances of the 4 basic elements." << std::endl;
+			std::cout << "- Enter the word 'delete' and the number of an element to erase it from your list." << std::endl;
+			std::cout << "- Enter the word 'info' and the number of an element to get information about it in the explorer." << std::endl;
+			std::cout << "- Enter the word 'sort' to sort by alphabetical order the elements in the list." << std::endl;
+			std::cout << "- Enter the word 'clean' to delete all the instances of repeated elements." << std::endl;
+			std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
+			
+			ayuda = false;
+		}
+
 		std::cin >> toRead;
 		int x = atoi(toRead.c_str());
 		if (toRead == "add")
@@ -111,14 +131,7 @@ void main()
 		}
 		else if (toRead == "help")
 		{
-			std::cout << "- Enter two numbers of your elements list to combine them." << std::endl;
-			std::cout << "- Enter the word 'add' and the number of an element to add a new instance of that element." << std::endl;
-			std::cout << "- Enter 'add basics' to add new instances of the 4 basic elements." << std::endl;
-			std::cout << "- Enter the word 'delete' and the number of an element to erase it from your list." << std::endl;
-			std::cout << "- Enter the word 'info' and the number of an element to get information about it in the explorer." << std::endl;
-			std::cout << "- Enter the word 'sort' to sort by alphabetical order the elements in the list." << std::endl;
-			std::cout << "- Enter the word 'clean' to delete all the instances of repeated elements." << std::endl;
-			std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
+			ayuda = true;
 		}
 		else if (x != 0 && x <= items.size())
 		{

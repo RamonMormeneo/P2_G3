@@ -1,4 +1,8 @@
-﻿  Source.cpp
-c:\users\dolors\source\repos\p2_g3\alchemy\source.cpp(34): warning C4101: 'item': unreferenced local variable
-  Alchemy.vcxproj -> C:\Users\Dolors\Source\Repos\P2_G3\x64\Debug\Alchemy.exe
-  Alchemy.vcxproj -> C:\Users\Dolors\Source\Repos\P2_G3\x64\Debug\Alchemy.pdb (Full PDB)
+﻿Build started 01/05/2017 12:48:29.
+     1>Project "C:\Users\User\Desktop\P2_G3-master\Alchemy\Alchemy.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Cpp.Platform.targets(64,5): error MSB8020: The build tools for v140 (Platform Toolset = 'v140') cannot be found. To build using the v140 build tools, please install v140 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Upgrade Solution...".
+     1>Done Building Project "C:\Users\User\Desktop\P2_G3-master\Alchemy\Alchemy.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.04
