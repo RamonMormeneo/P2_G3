@@ -189,12 +189,15 @@ void main()
 					items.erase(items.begin() + (x - 1));
 					items.erase(items.begin() + (aux-2));
 					items.push_back(fusions[key]);
+					std::cout << "Congratulations! You have unlocked" << fusions[key] << std::endl;
+
 				}
 				if (it == false)
 				{
 					items.erase(items.begin() + (x - 1));
 					items.erase(items.begin() + (aux-2));
 					items.push_back(fusions[key]);
+					std::cout << "You have unlocked" << fusions[key] << std::endl;
 				}
 			}
 			tryagain = false;
