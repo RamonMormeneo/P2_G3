@@ -94,7 +94,7 @@ void main()
 			createknownitem = false;
 		}
 		std::cout << std::endl;
-		std::cout << "Puntuacion:" << ' ' << puntuacion << std::endl;
+		std::cout << "Score:" << ' ' << puntuacion << std::endl;
 		
 		// Imprimir los elementos que puede usar el jugador.
 		for (int i = 1; i <= items.size(); i++){
