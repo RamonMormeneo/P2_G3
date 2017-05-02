@@ -35,6 +35,8 @@ void main()
 	bool discobernewitem = false, createknownitem = false, ayuda = true, tryagain = false;
 	int puntuacion=0;
 	int item;
+	int comprobante=0;
+	int max = 395;
 	int inicio = 0;
 	std::string wiki = "https://en.wikipedia.org/wiki/";
 	// Llenamos los mapas.
@@ -49,11 +51,12 @@ void main()
 		key.second = Linea.substr(posdelmas + 2);
 		fusions[key] = result;
 		newitems[key] = true;
+		comprobante++;
 	}
-	// Si no se crea correctamente.
-	if (fusions.size() != 390)
+	// Si no lee correctamente los 395 elementos del archivo o si no carga correctamente éste.
+	if (comprobante != max)
 	{
-		system("pause");
+		exit(0);
 	}
 	while (puntuacion < 395)
 	{
@@ -178,8 +181,8 @@ void main()
 		// Fusión de elementos.
 		else if (x != 0 && x <= items.size())
 		{
-			std::pair<std::string, std::string> key;
-			key.first = items[x - 1];
+			std::pair<std::string, std::string> key2;
+			key2.first = items[x - 1];
 			system("cls");
 			std::cout << "Choose another element" << std::endl;
 			int aux;
@@ -191,8 +194,8 @@ void main()
 				std::cout << "This element has been chosen. Choose another one" << std::endl;
 				std::cin >> aux;
 			}
-			key.second = items[aux - 1];
-			auto it = newitems[key];
+			key2.second = items[aux - 1];
+			auto it = newitems[key2];
 			
 			// Comprobar que no se ha generado un nuevo elemento en el mapa de fusiones.
 			// Si es el caso, significa que la key esta mal introducida y entra en el bucle.
@@ -200,17 +203,17 @@ void main()
 			if (newitems.size() > 390)
 			{
 				// Borrar el elemento creado.
-				auto erase = newitems.find(key);
+				auto erase = newitems.find(key2);
 				newitems.erase(erase);
 				// Cambiar la primera key por la segunda y viceversa.
-				key.first = items[aux - 1];
-				key.second = items[x - 1];
-				it = newitems[key];
+				key2.first = items[aux - 1];
+				key2.second = items[x - 1];
+				it = newitems[key2];
 			}
 			// Si se ha vuelto a generar un nuevo elemento significa que esa combinación no existe.
 			if (newitems.size() > 390)
 			{
-				auto erase = newitems.find(key);
+				auto erase = newitems.find(key2);
 				newitems.erase(erase);
 	
 				tryagain = true;
@@ -228,11 +231,11 @@ void main()
 				// En el caso que no se haya hecho esta combinación...
 				if (it == true)
 				{
-					newitems[key] = false;
+					newitems[key2] = false;
 					puntuacion++;
 					items.erase(items.begin() + (x - 1));
 					items.erase(items.begin() + (aux-2));
-					items.push_back(fusions[key]);
+					items.push_back(fusions[key2]);
 					discobernewitem = true;
 				}
 				// Si esa combinación se había hecho anteriormente...
@@ -240,7 +243,7 @@ void main()
 				{
 					items.erase(items.begin() + (x - 1));
 					items.erase(items.begin() + (aux-2));
-					items.push_back(fusions[key]);
+					items.push_back(fusions[key2]);
 					createknownitem = true;
 				}
 			}
