@@ -134,7 +134,7 @@ void main()
 		{
 			int aux;
 			std::cin >> aux;
-			if (aux < items.size())
+			if (aux <= items.size())
 			{
 				items.erase(items.begin() + (aux - 1));
 			}
