@@ -132,11 +132,12 @@ void main()
 		// Eliminar en concreto.
 		else if (toRead == "delete")
 		{
-			int aux;
+			std:: string aux;
 			std::cin >> aux;
-			if (aux <= items.size())
+			int aux2 = atoi(aux.c_str());
+			if (aux2 <= items.size()&&aux2!=0)
 			{
-				items.erase(items.begin() + (aux - 1));
+				items.erase(items.begin() + (aux2 - 1));
 			}
 		}
 		// Eliminar repetidos.
@@ -162,15 +163,17 @@ void main()
 		// Información sobre los elementos.
 		else if (toRead == "info")
 		{
-			int aux;
+			std::string aux;
 			std::cin >> aux;
-
+			int aux2 = atoi(aux.c_str());
 			std::string url;
+			if (aux2 <= items.size() && aux2 != 0)
+			{
+				url.operator+= (wiki);
+				url.operator+= (items[aux2 - 1]);
 
-			url.operator+= (wiki);
-			url.operator+= (items[aux - 1]);
-
-			ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+				ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+			}
 
 		}
 		// Si se tiene que imprimir el menú con los comandos.
@@ -185,66 +188,71 @@ void main()
 			key2.first = items[x - 1];
 			system("cls");
 			std::cout << "Choose another element" << std::endl;
-			int aux;
+			std::string aux;
 			std::cin >> aux;
+			int num = atoi(aux.c_str());
 			// No se puede elgir el mismo elemento.
-			while(aux == x)
+			if (num != 0 && num <= items.size())
 			{
-				system("cls");
-				std::cout << "This element has been chosen. Choose another one" << std::endl;
-				std::cin >> aux;
-			}
-			key2.second = items[aux - 1];
-			auto it = newitems[key2];
-			
-			// Comprobar que no se ha generado un nuevo elemento en el mapa de fusiones.
-			// Si es el caso, significa que la key esta mal introducida y entra en el bucle.
+				while (num == x || num == 0 || num >= items.size())
+				{
+					system("cls");
+					std::cout << "This element has been chosen. Choose another one" << std::endl;
+					std::cin >> aux;
+					num = atoi(aux.c_str());
+				}
+				key2.second = items[num - 1];
+				auto it = newitems[key2];
 
-			if (newitems.size() > 390)
-			{
-				// Borrar el elemento creado.
-				auto erase = newitems.find(key2);
-				newitems.erase(erase);
-				// Cambiar la primera key por la segunda y viceversa.
-				key2.first = items[aux - 1];
-				key2.second = items[x - 1];
-				it = newitems[key2];
-			}
-			// Si se ha vuelto a generar un nuevo elemento significa que esa combinación no existe.
-			if (newitems.size() > 390)
-			{
-				auto erase = newitems.find(key2);
-				newitems.erase(erase);
-	
-				tryagain = true;
-			}
-			// Si la combinación es correcta o no.
-			if (tryagain == false)
-			{
-				// Si el segundo es más grande que el primero se cambian.
-				if (aux < x)
+				// Comprobar que no se ha generado un nuevo elemento en el mapa de fusiones.
+				// Si es el caso, significa que la key esta mal introducida y entra en el bucle.
+
+				if (newitems.size() > 390)
 				{
-					int aux2 = x;
-					x = aux;
-					aux = aux2;
+					// Borrar el elemento creado.
+					auto erase = newitems.find(key2);
+					newitems.erase(erase);
+					// Cambiar la primera key por la segunda y viceversa.
+					key2.first = items[num - 1];
+					key2.second = items[x - 1];
+					it = newitems[key2];
 				}
-				// En el caso que no se haya hecho esta combinación...
-				if (it == true)
+				// Si se ha vuelto a generar un nuevo elemento significa que esa combinación no existe.
+				if (newitems.size() > 390)
 				{
-					newitems[key2] = false;
-					puntuacion++;
-					items.erase(items.begin() + (x - 1));
-					items.erase(items.begin() + (aux-2));
-					items.push_back(fusions[key2]);
-					discobernewitem = true;
+					auto erase = newitems.find(key2);
+					newitems.erase(erase);
+
+					tryagain = true;
 				}
-				// Si esa combinación se había hecho anteriormente...
-				if (it == false)
+				// Si la combinación es correcta o no.
+				if (tryagain == false)
 				{
-					items.erase(items.begin() + (x - 1));
-					items.erase(items.begin() + (aux-2));
-					items.push_back(fusions[key2]);
-					createknownitem = true;
+					// Si el segundo es más grande que el primero se cambian.
+					if (num < x)
+					{
+						int aux2 = x;
+						x = num;
+						aux = aux2;
+					}
+					// En el caso que no se haya hecho esta combinación...
+					if (it == true)
+					{
+						newitems[key2] = false;
+						puntuacion++;
+						items.erase(items.begin() + (x - 1));
+						items.erase(items.begin() + (num - 2));
+						items.push_back(fusions[key2]);
+						discobernewitem = true;
+					}
+					// Si esa combinación se había hecho anteriormente...
+					if (it == false)
+					{
+						items.erase(items.begin() + (x - 1));
+						items.erase(items.begin() + (num - 2));
+						items.push_back(fusions[key2]);
+						createknownitem = true;
+					}
 				}
 			}
 		}
